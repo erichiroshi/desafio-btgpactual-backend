@@ -1,0 +1,36 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+
+  # ── Datasource ────────────────────────────────────────────────────────────
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+      idle-timeout: 600000
+
+  # ── JPA ────────────────────────────────────────────────────────────
+  jpa:
+    show-sql: false
+
+  # ── RabbitMQ ────────────────────────────────────────────────────────────
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT}
+    username: ${RABBITMQ_USER}
+    password: ${RABBITMQ_PASS}
+
+# ── Actuator ────────────────────────────────────────────────────────────
+management:
+  endpoint:
+    health:
+      show-details: when_authorized
+
+# ── Logging ────────────────────────────────────────────────────────────
+logging:
+  level:
+    com.erichiroshi.desafiobtgpactualbackend: INFO

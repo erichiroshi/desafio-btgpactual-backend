@@ -1,0 +1,36 @@
+spring:
+  config:
+    import: optional:file:.env.dev[.properties]
+
+  # ── Datasource ────────────────────────────────────────────────────────────
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/btgpactualdb}
+    username: ${DB_USERNAME:user}
+    password: ${DB_PASSWORD:pass}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+      idle-timeout: 600000
+
+  # ── JPA ────────────────────────────────────────────────────────────
+  jpa:
+    show-sql: true
+
+  # ── RabbitMQ ──────────────────────────────────────────────────────────────────
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USER:guest}
+    password: ${RABBITMQ_PASS:guest}
+
+# ── Actuator ────────────────────────────────────────────────────────────
+management:
+  endpoint:
+    health:
+      show-details: always
+
+# ── Logging ────────────────────────────────────────────────────────────
+logging:
+  level:
+    com.erichiroshi.desafiobtgpactualbackend: DEBUG
