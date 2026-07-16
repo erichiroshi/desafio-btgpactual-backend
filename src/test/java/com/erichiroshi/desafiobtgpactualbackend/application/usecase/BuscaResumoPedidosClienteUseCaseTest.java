@@ -24,18 +24,18 @@ class BuscaResumoPedidosClienteUseCaseTest {
         long codigoCliente = 1L;
 
         when(orderRepositoryPort.countByCustomerId(codigoCliente)).thenReturn(3L);
-        when(orderRepositoryPort.sumValorTotalByCustomerId(codigoCliente)).thenReturn(new BigDecimal("450.00"));
+        when(orderRepositoryPort.sumTotalByCustomerId(codigoCliente)).thenReturn(new BigDecimal("450.00"));
 
-        FindOrderClienteSummaryUseCase useCase = new FindOrderClienteSummaryUseCase(orderRepositoryPort);
+        FindOrderCustomerSummaryUseCase useCase = new FindOrderCustomerSummaryUseCase(orderRepositoryPort);
 
         SummaryOrdersCustomerOutput output = useCase.execute(codigoCliente);
 
-        assertThat(output.CustomerId()).isEqualTo(codigoCliente);
+        assertThat(output.customerId()).isEqualTo(codigoCliente);
         assertThat(output.quantityOrder()).isEqualTo(3L);
         assertThat(output.total()).isEqualByComparingTo("450.00");
 
         verify(orderRepositoryPort).countByCustomerId(codigoCliente);
-        verify(orderRepositoryPort).sumValorTotalByCustomerId(codigoCliente);
+        verify(orderRepositoryPort).sumTotalByCustomerId(codigoCliente);
     }
 
     @Test
@@ -43,9 +43,9 @@ class BuscaResumoPedidosClienteUseCaseTest {
         long codigoCliente = 2L;
 
         when(orderRepositoryPort.countByCustomerId(codigoCliente)).thenReturn(0L);
-        when(orderRepositoryPort.sumValorTotalByCustomerId(codigoCliente)).thenReturn(BigDecimal.ZERO);
+        when(orderRepositoryPort.sumTotalByCustomerId(codigoCliente)).thenReturn(BigDecimal.ZERO);
 
-        FindOrderClienteSummaryUseCase useCase = new FindOrderClienteSummaryUseCase(orderRepositoryPort);
+        FindOrderCustomerSummaryUseCase useCase = new FindOrderCustomerSummaryUseCase(orderRepositoryPort);
 
         SummaryOrdersCustomerOutput output = useCase.execute(codigoCliente);
 

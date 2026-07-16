@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class OrderOutputTest {
 
     @Test
-    void fromDomain_deveExporIdClienteProdutosEValorTotal() {
+    void fromDomain_deveExporIdClienteProdutosEGetTotal() {
         Order order = new Order(1001L, 1L, Set.of(
                 new OrderItem("lapis", 100, new BigDecimal("1.10")),
                 new OrderItem("caderno", 10, new BigDecimal("1.00"))

@@ -14,7 +14,7 @@ public record OrderOutput(
 ) {
 
     public static OrderOutput fromDomain(Order order) {
-        return new OrderOutput(order.getOrderId(), order.getCustomerId(), orderItemOutputsSet(order), order.valorTotal());
+        return new OrderOutput(order.getOrderId(), order.getCustomerId(), orderItemOutputsSet(order), order.getTotal());
     }
 
     private static Set<OrderItemOutput> orderItemOutputsSet(Order order) {

@@ -53,7 +53,7 @@ public class PostgresRepositoryAdapter implements OrderRepositoryPort {
     }
 
     @Override
-    public BigDecimal sumValorTotalByCustomerId(long customerId) {
+    public BigDecimal sumTotalByCustomerId(long customerId) {
 
         log.info("PostgresAdapter - sumValorTotalByCustomerId customerId: {}", customerId);
 

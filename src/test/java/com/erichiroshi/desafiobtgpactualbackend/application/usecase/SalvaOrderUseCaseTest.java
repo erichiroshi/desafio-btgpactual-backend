@@ -40,6 +40,6 @@ class SalvaOrderUseCaseTest {
         Order salvo = captor.getValue();
         assertThat(salvo.getOrderId()).isEqualTo(1001L);
         assertThat(salvo.getCustomerId()).isEqualTo(1L);
-        assertThat(salvo.valorTotal()).isEqualByComparingTo("110.00");
+        assertThat(salvo.getTotal()).isEqualByComparingTo("110.00");
     }
 }

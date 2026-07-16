@@ -12,21 +12,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 class OrderTest {
 
     @Test
-    void valorTotal_deveSomarValorTotalDeCadaProduto() {
+    void valorTotal_deveSomarGetTotalDeCadaProduto() {
         OrderItem lapis = new OrderItem("lapis", 100, new BigDecimal("1.10"));
         OrderItem caderno = new OrderItem("caderno", 10, new BigDecimal("1.00"));
 
         Order order = new Order(1001L, 1L, Set.of(lapis, caderno));
 
         // 100 * 1.10 + 10 * 1.00 = 110.00 + 10.00 = 120.00
-        assertThat(order.valorTotal()).isEqualByComparingTo("120.00");
+        assertThat(order.getTotal()).isEqualByComparingTo("120.00");
     }
 
     @Test
-    void valorTotal_semProdutos_deveSerZero() {
+    void getTotal_semProdutos_deveSerZero() {
         Order order = new Order(1002L, 1L, Set.of());
 
-        assertThat(order.valorTotal()).isEqualByComparingTo(BigDecimal.ZERO);
+        assertThat(order.getTotal()).isEqualByComparingTo(BigDecimal.ZERO);
     }
 
     @Test

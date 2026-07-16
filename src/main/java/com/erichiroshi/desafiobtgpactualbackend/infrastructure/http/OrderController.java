@@ -3,7 +3,7 @@ package com.erichiroshi.desafiobtgpactualbackend.infrastructure.http;
 import com.erichiroshi.desafiobtgpactualbackend.application.output.OrderOutput;
 import com.erichiroshi.desafiobtgpactualbackend.application.output.SummaryOrdersCustomerOutput;
 import com.erichiroshi.desafiobtgpactualbackend.application.port.in.FindOrderPort;
-import com.erichiroshi.desafiobtgpactualbackend.application.port.in.FindOrderClienteSummaryPort;
+import com.erichiroshi.desafiobtgpactualbackend.application.port.in.FindOrderCustomerSummaryPort;
 import com.erichiroshi.desafiobtgpactualbackend.infrastructure.http.response.ApiResponse;
 import com.erichiroshi.desafiobtgpactualbackend.infrastructure.http.response.OrderResponse;
 import com.erichiroshi.desafiobtgpactualbackend.infrastructure.http.response.SummaryCustomerOrderResponse;
@@ -22,11 +22,11 @@ import java.util.Map;
 public class OrderController {
 
     private final FindOrderPort findOrderPort;
-    private final FindOrderClienteSummaryPort findOrderClienteSummaryPort;
+    private final FindOrderCustomerSummaryPort findOrderCustomerSummaryPort;
 
-    public OrderController(FindOrderPort findOrderPort, FindOrderClienteSummaryPort findOrderClienteSummaryPort) {
+    public OrderController(FindOrderPort findOrderPort, FindOrderCustomerSummaryPort findOrderCustomerSummaryPort) {
         this.findOrderPort = findOrderPort;
-        this.findOrderClienteSummaryPort = findOrderClienteSummaryPort;
+        this.findOrderCustomerSummaryPort = findOrderCustomerSummaryPort;
     }
 
     @GetMapping("/{customerId}/orders")
@@ -34,7 +34,7 @@ public class OrderController {
         Page<OrderOutput> outputPage = findOrderPort.execute(customerId, pageable);
         Page<OrderResponse> responsePage = outputPage.map(OrderResponse::fromOutput);
 
-        SummaryOrdersCustomerOutput summary = findOrderClienteSummaryPort.execute(customerId);
+        SummaryOrdersCustomerOutput summary = findOrderCustomerSummaryPort.execute(customerId);
 
         Map<String, Object> summaryMap = Map.of(
                 "customerId", customerId,
@@ -47,7 +47,7 @@ public class OrderController {
 
     @GetMapping("/{customerId}/orders/summary")
     public ResponseEntity<SummaryCustomerOrderResponse> getSummaries(@PathVariable long customerId) {
-        SummaryOrdersCustomerOutput output = findOrderClienteSummaryPort.execute(customerId);
+        SummaryOrdersCustomerOutput output = findOrderCustomerSummaryPort.execute(customerId);
         return ResponseEntity.ok(SummaryCustomerOrderResponse.fromOutput(output));
     }
 }

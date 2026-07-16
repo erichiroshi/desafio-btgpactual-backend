@@ -41,7 +41,7 @@ class PostgresRepositoryAdapterTest {
 
         assertThat(resultado.getOrderId()).isEqualTo(1001L);
         assertThat(resultado.getCustomerId()).isEqualTo(1L);
-        assertThat(resultado.valorTotal()).isEqualByComparingTo("110.00");
+        assertThat(resultado.getTotal()).isEqualByComparingTo("110.00");
     }
 
     @Test
@@ -60,7 +60,7 @@ class PostgresRepositoryAdapterTest {
         Page<Order> resultado = adapter.findAllByCustomerId(codigoCliente, pageable);
 
         assertThat(resultado.getTotalElements()).isEqualTo(1);
-        assertThat(resultado.getContent().get(0).getOrderId()).isEqualTo(1001L);
+        assertThat(resultado.getContent().getFirst().getOrderId()).isEqualTo(1001L);
 
         verify(repository).findAllByCustomerId(codigoCliente, pageable);
     }
@@ -76,12 +76,12 @@ class PostgresRepositoryAdapterTest {
     }
 
     @Test
-    void sumValorTotalByCustomerId_deveDelegarParaORepositorio() {
+    void sumTotalByCustomerId_deveDelegarParaORepositorio() {
         when(repository.sumValorTotalByCustomerId(1L)).thenReturn(new BigDecimal("450.00"));
 
         PostgresRepositoryAdapter adapter = new PostgresRepositoryAdapter(repository);
 
-        assertThat(adapter.sumValorTotalByCustomerId(1L)).isEqualByComparingTo("450.00");
+        assertThat(adapter.sumTotalByCustomerId(1L)).isEqualByComparingTo("450.00");
         verify(repository).sumValorTotalByCustomerId(1L);
     }
 }

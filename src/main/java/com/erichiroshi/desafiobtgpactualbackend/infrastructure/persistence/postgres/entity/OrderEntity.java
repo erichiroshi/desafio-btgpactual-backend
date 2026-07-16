@@ -38,10 +38,10 @@ public class OrderEntity {
     }
 
     public Order toDomain() {
-        return new Order(orderId, customerId, produtoSet());
+        return new Order(orderId, customerId, orderItemsSet());
     }
 
-    private Set<OrderItem> produtoSet() {
+    private Set<OrderItem> orderItemsSet() {
         return orderItems.stream()
                 .map(OrderItemEntity::toDomain)
                 .collect(Collectors.toSet());
@@ -51,11 +51,11 @@ public class OrderEntity {
         return new OrderEntity(
                 order.getOrderId(),
                 order.getCustomerId(),
-                produtoEntitySet(order),
-                order.valorTotal());
+                orderItemEntitySet(order),
+                order.getTotal());
     }
 
-    private static Set<OrderItemEntity> produtoEntitySet(Order order) {
+    private static Set<OrderItemEntity> orderItemEntitySet(Order order) {
         return order.getItems().stream()
                 .map(OrderItemEntity::fromDomain)
                 .collect(Collectors.toSet());

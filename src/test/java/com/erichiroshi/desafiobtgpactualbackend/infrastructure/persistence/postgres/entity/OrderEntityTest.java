@@ -24,7 +24,7 @@ class OrderEntityTest {
         assertThat(devolta.getOrderId()).isEqualTo(order.getOrderId());
         assertThat(devolta.getCustomerId()).isEqualTo(order.getCustomerId());
         assertThat(devolta.getItems()).hasSize(2);
-        assertThat(devolta.valorTotal()).isEqualByComparingTo(order.valorTotal());
+        assertThat(devolta.getTotal()).isEqualByComparingTo(order.getTotal());
     }
 
     @Test

@@ -3,7 +3,7 @@ package com.erichiroshi.desafiobtgpactualbackend.infrastructure.http;
 import com.erichiroshi.desafiobtgpactualbackend.application.output.OrderOutput;
 import com.erichiroshi.desafiobtgpactualbackend.application.output.SummaryOrdersCustomerOutput;
 import com.erichiroshi.desafiobtgpactualbackend.application.port.in.FindOrderPort;
-import com.erichiroshi.desafiobtgpactualbackend.application.port.in.FindOrderClienteSummaryPort;
+import com.erichiroshi.desafiobtgpactualbackend.application.port.in.FindOrderCustomerSummaryPort;
 import com.erichiroshi.desafiobtgpactualbackend.domain.model.OrderItem;
 import com.erichiroshi.desafiobtgpactualbackend.domain.model.Order;
 import org.junit.jupiter.api.Test;
@@ -36,15 +36,15 @@ class OrderControllerTest {
     private FindOrderPort findOrderPort;
 
     @MockitoBean
-    private FindOrderClienteSummaryPort findOrderClienteSummaryPort;
+    private FindOrderCustomerSummaryPort findOrderCustomerSummaryPort;
 
     @Test
-    void getOrdersSummary_deveRetornarQuantidadeEValorTotalDoCliente() throws Exception {
+    void getOrdersSummary_deveRetornarQuantidadeEGetTotalDoCliente() throws Exception {
         long codigoCliente = 1L;
         SummaryOrdersCustomerOutput output = new SummaryOrdersCustomerOutput(
                 codigoCliente, 3L, new BigDecimal("450.00"));
 
-        when(findOrderClienteSummaryPort.execute(codigoCliente)).thenReturn(output);
+        when(findOrderCustomerSummaryPort.execute(codigoCliente)).thenReturn(output);
 
         mockMvc.perform(get("/customers/{id}/orders/summary", codigoCliente))
                 .andExpect(status().isOk())
@@ -54,7 +54,7 @@ class OrderControllerTest {
     }
 
     @Test
-    void getOrders_deveExporValorTotalExplicitoPorPedidoEResumoDoCliente() throws Exception {
+    void getOrders_deveExporGetTotalExplicitoPorPedidoEResumoDoCliente() throws Exception {
         long codigoCliente = 1L;
 
         OrderOutput orderOutput = OrderOutput.fromDomain(
@@ -70,7 +70,7 @@ class OrderControllerTest {
                 codigoCliente, 1L, new BigDecimal("110.00"));
 
         when(findOrderPort.execute(anyLong(), any(Pageable.class))).thenReturn(page);
-        when(findOrderClienteSummaryPort.execute(codigoCliente)).thenReturn(resumo);
+        when(findOrderCustomerSummaryPort.execute(codigoCliente)).thenReturn(resumo);
 
         mockMvc.perform(get("/customers/{id}/orders", codigoCliente))
                 .andExpect(status().isOk())

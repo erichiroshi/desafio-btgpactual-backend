@@ -22,6 +22,6 @@ class OrderInputTest {
         assertThat(order.getOrderId()).isEqualTo(1001L);
         assertThat(order.getCustomerId()).isEqualTo(1L);
         assertThat(order.getItems()).hasSize(2);
-        assertThat(order.valorTotal()).isEqualByComparingTo("120.00");
+        assertThat(order.getTotal()).isEqualByComparingTo("120.00");
     }
 }

@@ -11,7 +11,7 @@ public record SummaryCustomerOrderResponse(
 
     public static SummaryCustomerOrderResponse fromOutput(SummaryOrdersCustomerOutput output) {
         return new SummaryCustomerOrderResponse(
-                output.CustomerId(),
+                output.customerId(),
                 output.quantityOrder(),
                 output.total());
     }

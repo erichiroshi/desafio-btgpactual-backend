@@ -32,7 +32,7 @@ class OrderJpaRepositoryIT {
     private OrderJpaRepository repository;
 
     @Test
-    void sumValorTotalByCustomerId() {
+    void sumGetTotalByCustomerId() {
         long codigoCliente = 1L;
 
         // Pedido 1: 100 * 1.10 + 10 * 1.00 = 120.00
@@ -54,7 +54,7 @@ class OrderJpaRepositoryIT {
     }
 
     @Test
-    void sumValorTotalByCustomerIdSemPedidos_deveRetornarZero() {
+    void sumGetTotalByCustomerIdSemPedidos_deveRetornarZero() {
         BigDecimal total = repository.sumValorTotalByCustomerId(999L);
         long quantidade = repository.countByCustomerId(999L);
 

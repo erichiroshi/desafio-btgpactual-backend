@@ -1,17 +1,17 @@
-<p style="text-align: center;">
+<p align="center">
 <img width="50%" src="images/btg-logo.jpg" alt="BTG Pactual Logo">
 </p>
 
 <h3 align="center">Desafio Engenheiro de Software Backend — BTG Pactual</h3>
-<p style="text-align: center;">Processamento assíncrono de pedidos com RabbitMQ, PostgreSQL e Arquitetura Hexagonal</p>
+<p align="center">Processamento assíncrono de pedidos com RabbitMQ, PostgreSQL e Arquitetura Hexagonal</p>
 
-<p style="text-align: center;">
-<a href="https://sonarcloud.io/summary/new_code?id=erichiroshi_desafio-btgpactual-backend"><img src="https://sonarcloud.io/api/project_badges/measure?project=erichiroshi_desafio-btgpactual-backend&metric=alert_status" alt="Quality gate status"></a>
+<p align="center">
+  <a href="https://sonarcloud.io/summary/new_code?id=desafio-btgpactual-backend"><img src="https://sonarcloud.io/api/project_badges/measure?project=desafio-btgpactual-backend&metric=alert_status" alt="Quality gate status"></a>
   <a href="https://codecov.io/gh/erichiroshi/desafio-btgpactual-backend"><img src="https://codecov.io/gh/erichiroshi/desafio-btgpactual-backend/graph/badge.svg?token=9GX7M67KWD" alt="codecov"></a>
   <a href="https://github.com/erichiroshi/desafio-btgpactual-backend/actions/workflows/build.yml"><img src="https://github.com/erichiroshi/desafio-btgpactual-backend/actions/workflows/build.yml/badge.svg" alt="CI"></a>
 </p>
 
-<p style="text-align: center;">
+<p align="center">
   <img src="https://img.shields.io/badge/Java-25-red?style=flat-square&logo=openjdk" alt="Java 25">
   <img src="https://img.shields.io/badge/Spring%20Boot-4.1.0-6DB33F?style=flat-square&logo=springboot&logoColor=white" alt="Spring Boot 4.1.0">
   <img src="https://img.shields.io/badge/Gradle-9-02303A?style=flat-square&logo=gradle&logoColor=white" alt="Gradle 9">
@@ -558,6 +558,6 @@ Contribuições são sempre bem-vindas!
 
 Desenvolvido por **[Eric Hiroshi](https://github.com/erichiroshi)** — desenvolvedor backend Java, com foco em arquitetura hexagonal, Spring Boot e sistemas distribuídos.
 
-<p style="text-align: center;">
+<p align="center">
   <em>"Código limpo é aquele que foi escrito com clareza, empatia e propósito."</em>
 </p>

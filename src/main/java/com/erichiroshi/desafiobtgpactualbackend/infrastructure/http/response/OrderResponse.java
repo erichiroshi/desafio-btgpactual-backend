@@ -23,8 +23,8 @@ public record OrderResponse(
         );
     }
 
-    private static Set<OrderItemResponse> orderItemsResponseSet(Set<OrderItemOutput> produtosOutput) {
-        return produtosOutput.stream()
+    private static Set<OrderItemResponse> orderItemsResponseSet(Set<OrderItemOutput> itemOutputs) {
+        return itemOutputs.stream()
                 .map(OrderItemResponse::fromOutput)
                 .collect(Collectors.toSet());
     }

@@ -14,5 +14,5 @@ public interface OrderRepositoryPort {
 
     long countByCustomerId(long customerId);
 
-    BigDecimal sumValorTotalByCustomerId(long customerId);
+    BigDecimal sumTotalByCustomerId(long customerId);
 }
