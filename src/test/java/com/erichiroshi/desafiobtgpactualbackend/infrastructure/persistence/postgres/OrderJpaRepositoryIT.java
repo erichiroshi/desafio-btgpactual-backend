@@ -46,7 +46,7 @@ class OrderJpaRepositoryIT {
         salvarPedido(1003L, 2L,
                 new OrderItem("caneta", 1, new BigDecimal("5.00")));
 
-        BigDecimal total = repository.sumValorTotalByCustomerId(codigoCliente);
+        BigDecimal total = repository.sumTotalByCustomerId(codigoCliente);
         long quantidade = repository.countByCustomerId(codigoCliente);
 
         assertThat(total).isEqualByComparingTo("130.00");
@@ -55,7 +55,7 @@ class OrderJpaRepositoryIT {
 
     @Test
     void sumGetTotalByCustomerIdSemPedidos_deveRetornarZero() {
-        BigDecimal total = repository.sumValorTotalByCustomerId(999L);
+        BigDecimal total = repository.sumTotalByCustomerId(999L);
         long quantidade = repository.countByCustomerId(999L);
 
         assertThat(total).isEqualByComparingTo(BigDecimal.ZERO);

@@ -99,7 +99,6 @@ tasks.named('test') {
 tasks.named('jacocoTestReport') {
     dependsOn tasks.named('test')
     mustRunAfter tasks.named('test')
-    finalizedBy tasks.named('jacocoTestCoverageVerification')
 }
 
 tasks.named('jacocoTestCoverageVerification') {

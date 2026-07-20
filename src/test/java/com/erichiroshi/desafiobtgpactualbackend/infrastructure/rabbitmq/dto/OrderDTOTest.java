@@ -12,9 +12,9 @@ class OrderDTOTest {
 
     @Test
     void toInput_deveConverterMensagemParaPedidoInput() {
-        PedidoDTO dto = new PedidoDTO(1001L, 1L, Set.of(
-                new ProdutoDTO("lapis", 100, new BigDecimal("1.10")),
-                new ProdutoDTO("caderno", 10, new BigDecimal("1.00"))
+        OrderDTO dto = new OrderDTO(1001L, 1L, Set.of(
+                new OrderItemDTO("lapis", 100, new BigDecimal("1.10")),
+                new OrderItemDTO("caderno", 10, new BigDecimal("1.00"))
         ));
 
         OrderInput input = dto.toInput();

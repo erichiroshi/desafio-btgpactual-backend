@@ -51,11 +51,11 @@ public class OrderEntity {
         return new OrderEntity(
                 order.getOrderId(),
                 order.getCustomerId(),
-                orderItemEntitySet(order),
+                orderItemEntitiesSet(order),
                 order.getTotal());
     }
 
-    private static Set<OrderItemEntity> orderItemEntitySet(Order order) {
+    private static Set<OrderItemEntity> orderItemEntitiesSet(Order order) {
         return order.getItems().stream()
                 .map(OrderItemEntity::fromDomain)
                 .collect(Collectors.toSet());
@@ -64,7 +64,4 @@ public class OrderEntity {
     public BigDecimal getTotal() {
         return total;
     }
-
 }
-
-

@@ -1,6 +1,6 @@
 package com.erichiroshi.desafiobtgpactualbackend.application.usecase;
 
-import com.erichiroshi.desafiobtgpactualbackend.application.output.SummaryOrdersCustomerOutput;
+import com.erichiroshi.desafiobtgpactualbackend.application.output.CustomerOrderSummaryOutput;
 import com.erichiroshi.desafiobtgpactualbackend.application.port.out.OrderRepositoryPort;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,9 +26,9 @@ class BuscaResumoPedidosClienteUseCaseTest {
         when(orderRepositoryPort.countByCustomerId(codigoCliente)).thenReturn(3L);
         when(orderRepositoryPort.sumTotalByCustomerId(codigoCliente)).thenReturn(new BigDecimal("450.00"));
 
-        FindOrderCustomerSummaryUseCase useCase = new FindOrderCustomerSummaryUseCase(orderRepositoryPort);
+        FindCustomerOrderSummaryUseCase useCase = new FindCustomerOrderSummaryUseCase(orderRepositoryPort);
 
-        SummaryOrdersCustomerOutput output = useCase.execute(codigoCliente);
+        CustomerOrderSummaryOutput output = useCase.execute(codigoCliente);
 
         assertThat(output.customerId()).isEqualTo(codigoCliente);
         assertThat(output.quantityOrder()).isEqualTo(3L);
@@ -45,9 +45,9 @@ class BuscaResumoPedidosClienteUseCaseTest {
         when(orderRepositoryPort.countByCustomerId(codigoCliente)).thenReturn(0L);
         when(orderRepositoryPort.sumTotalByCustomerId(codigoCliente)).thenReturn(BigDecimal.ZERO);
 
-        FindOrderCustomerSummaryUseCase useCase = new FindOrderCustomerSummaryUseCase(orderRepositoryPort);
+        FindCustomerOrderSummaryUseCase useCase = new FindCustomerOrderSummaryUseCase(orderRepositoryPort);
 
-        SummaryOrdersCustomerOutput output = useCase.execute(codigoCliente);
+        CustomerOrderSummaryOutput output = useCase.execute(codigoCliente);
 
         assertThat(output.quantityOrder()).isZero();
         assertThat(output.total()).isEqualByComparingTo(BigDecimal.ZERO);

@@ -11,7 +11,7 @@ public class RabbitMqConfig {
     public static final String ORDER_CREATED_QUEUE = "btg-pactual-order-created";
 
     @Bean
-    public Queue pedidoQueue() {
+    public Queue orderCreatedQueue() {
         return new Queue(ORDER_CREATED_QUEUE, true);
     }
 

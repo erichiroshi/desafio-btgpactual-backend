@@ -2,8 +2,8 @@ package com.erichiroshi.desafiobtgpactualbackend.infrastructure.rabbitmq;
 
 import com.erichiroshi.desafiobtgpactualbackend.application.input.OrderInput;
 import com.erichiroshi.desafiobtgpactualbackend.application.port.in.SaveOrderPort;
-import com.erichiroshi.desafiobtgpactualbackend.infrastructure.rabbitmq.dto.PedidoDTO;
-import com.erichiroshi.desafiobtgpactualbackend.infrastructure.rabbitmq.dto.ProdutoDTO;
+import com.erichiroshi.desafiobtgpactualbackend.infrastructure.rabbitmq.dto.OrderDTO;
+import com.erichiroshi.desafiobtgpactualbackend.infrastructure.rabbitmq.dto.OrderItemDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -24,8 +24,8 @@ class OrderConsumerTest {
 
     @Test
     void receber_deveConverterMensagemParaInputEChamarOUseCase() {
-        PedidoDTO mensagem = new PedidoDTO(1001L, 1L, Set.of(
-                new ProdutoDTO("lapis", 100, new BigDecimal("1.10"))
+        OrderDTO mensagem = new OrderDTO(1001L, 1L, Set.of(
+                new OrderItemDTO("lapis", 100, new BigDecimal("1.10"))
         ));
 
         OrderConsumer consumer = new OrderConsumer(saveOrderPort);

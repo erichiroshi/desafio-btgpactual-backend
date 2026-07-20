@@ -16,9 +16,9 @@ class OrderItemEntityTest {
         OrderItemEntity entity = OrderItemEntity.fromDomain(orderItem);
         OrderItem devolta = entity.toDomain();
 
-        assertThat(devolta.getProduct()).isEqualTo("lapis");
-        assertThat(devolta.getQuantity()).isEqualTo(100);
-        assertThat(devolta.getPrice()).isEqualByComparingTo("1.10");
+        assertThat(devolta.product()).isEqualTo("lapis");
+        assertThat(devolta.quantity()).isEqualTo(100);
+        assertThat(devolta.price()).isEqualByComparingTo("1.10");
     }
 
     @Test

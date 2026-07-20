@@ -11,7 +11,7 @@ class OrderItemDTOTest {
 
     @Test
     void toInput_deveConverterItemDaMensagemParaProdutoInput() {
-        ProdutoDTO dto = new ProdutoDTO("lapis", 100, new BigDecimal("1.10"));
+        OrderItemDTO dto = new OrderItemDTO("lapis", 100, new BigDecimal("1.10"));
 
         OrderItemInput input = dto.toInput();
 

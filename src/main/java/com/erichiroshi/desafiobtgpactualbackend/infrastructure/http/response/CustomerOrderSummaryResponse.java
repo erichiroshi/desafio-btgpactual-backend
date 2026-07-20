@@ -1,16 +1,16 @@
 package com.erichiroshi.desafiobtgpactualbackend.infrastructure.http.response;
 
-import com.erichiroshi.desafiobtgpactualbackend.application.output.SummaryOrdersCustomerOutput;
+import com.erichiroshi.desafiobtgpactualbackend.application.output.CustomerOrderSummaryOutput;
 
 import java.math.BigDecimal;
 
-public record SummaryCustomerOrderResponse(
+public record CustomerOrderSummaryResponse(
         long customerId,
         long quantityOrders,
         BigDecimal total) {
 
-    public static SummaryCustomerOrderResponse fromOutput(SummaryOrdersCustomerOutput output) {
-        return new SummaryCustomerOrderResponse(
+    public static CustomerOrderSummaryResponse fromOutput(CustomerOrderSummaryOutput output) {
+        return new CustomerOrderSummaryResponse(
                 output.customerId(),
                 output.quantityOrder(),
                 output.total());

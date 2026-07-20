@@ -18,11 +18,10 @@ public interface OrderJpaRepository extends JpaRepository<OrderEntity, Long> {
     long countByCustomerId(long customerId);
 
     @Query("""
-            SELECT COALESCE(SUM(pp.price * pp.quantity), 0)
-            FROM OrderEntity p
-            LEFT JOIN p.orderItems pp
-            WHERE p.customerId = :customerId
+            SELECT COALESCE(SUM(oi.price * oi.quantity), 0)
+            FROM OrderEntity o
+            LEFT JOIN o.orderItems oi
+            WHERE o.customerId = :customerId
             """)
-    BigDecimal sumValorTotalByCustomerId(@Param("customerId") long customerId);
+    BigDecimal sumTotalByCustomerId(@Param("customerId") long customerId);
 }
-

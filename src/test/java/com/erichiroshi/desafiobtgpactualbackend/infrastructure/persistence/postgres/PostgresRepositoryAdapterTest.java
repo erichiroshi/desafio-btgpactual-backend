@@ -77,11 +77,11 @@ class PostgresRepositoryAdapterTest {
 
     @Test
     void sumTotalByCustomerId_deveDelegarParaORepositorio() {
-        when(repository.sumValorTotalByCustomerId(1L)).thenReturn(new BigDecimal("450.00"));
+        when(repository.sumTotalByCustomerId(1L)).thenReturn(new BigDecimal("450.00"));
 
         PostgresRepositoryAdapter adapter = new PostgresRepositoryAdapter(repository);
 
         assertThat(adapter.sumTotalByCustomerId(1L)).isEqualByComparingTo("450.00");
-        verify(repository).sumValorTotalByCustomerId(1L);
+        verify(repository).sumTotalByCustomerId(1L);
     }
 }

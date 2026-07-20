@@ -4,7 +4,7 @@ import com.erichiroshi.desafiobtgpactualbackend.application.input.OrderItemInput
 
 import java.math.BigDecimal;
 
-public record ProdutoDTO(
+public record OrderItemDTO(
         String produto,
         int quantidade,
         BigDecimal preco

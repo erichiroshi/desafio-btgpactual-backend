@@ -2,7 +2,7 @@ package com.erichiroshi.desafiobtgpactualbackend.infrastructure.rabbitmq;
 
 import com.erichiroshi.desafiobtgpactualbackend.application.port.in.SaveOrderPort;
 import com.erichiroshi.desafiobtgpactualbackend.infrastructure.rabbitmq.config.RabbitMqConfig;
-import com.erichiroshi.desafiobtgpactualbackend.infrastructure.rabbitmq.dto.PedidoDTO;
+import com.erichiroshi.desafiobtgpactualbackend.infrastructure.rabbitmq.dto.OrderDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -21,11 +21,11 @@ public class OrderConsumer {
     }
 
     @RabbitListener(queues = RabbitMqConfig.ORDER_CREATED_QUEUE)
-    public void receber(@Payload PedidoDTO pedidoDTO) {
+    public void receber(@Payload OrderDTO orderDTO) {
 
-        logger.info("PedidoConsumer - Recebendo pedido: {}", pedidoDTO);
+        logger.info("OrderConsumer - Receiving order: {}", orderDTO);
 
-        saveOrderPort.execute(pedidoDTO.toInput());
+        saveOrderPort.execute(orderDTO.toInput());
     }
 
 }

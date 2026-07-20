@@ -1,12 +1,12 @@
 package com.erichiroshi.desafiobtgpactualbackend.infrastructure.http;
 
 import com.erichiroshi.desafiobtgpactualbackend.application.output.OrderOutput;
-import com.erichiroshi.desafiobtgpactualbackend.application.output.SummaryOrdersCustomerOutput;
+import com.erichiroshi.desafiobtgpactualbackend.application.output.CustomerOrderSummaryOutput;
 import com.erichiroshi.desafiobtgpactualbackend.application.port.in.FindOrderPort;
-import com.erichiroshi.desafiobtgpactualbackend.application.port.in.FindOrderCustomerSummaryPort;
+import com.erichiroshi.desafiobtgpactualbackend.application.port.in.FindCustomerOrderSummaryPort;
 import com.erichiroshi.desafiobtgpactualbackend.infrastructure.http.response.ApiResponse;
 import com.erichiroshi.desafiobtgpactualbackend.infrastructure.http.response.OrderResponse;
-import com.erichiroshi.desafiobtgpactualbackend.infrastructure.http.response.SummaryCustomerOrderResponse;
+import com.erichiroshi.desafiobtgpactualbackend.infrastructure.http.response.CustomerOrderSummaryResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +22,11 @@ import java.util.Map;
 public class OrderController {
 
     private final FindOrderPort findOrderPort;
-    private final FindOrderCustomerSummaryPort findOrderCustomerSummaryPort;
+    private final FindCustomerOrderSummaryPort findCustomerOrderSummaryPort;
 
-    public OrderController(FindOrderPort findOrderPort, FindOrderCustomerSummaryPort findOrderCustomerSummaryPort) {
+    public OrderController(FindOrderPort findOrderPort, FindCustomerOrderSummaryPort findCustomerOrderSummaryPort) {
         this.findOrderPort = findOrderPort;
-        this.findOrderCustomerSummaryPort = findOrderCustomerSummaryPort;
+        this.findCustomerOrderSummaryPort = findCustomerOrderSummaryPort;
     }
 
     @GetMapping("/{customerId}/orders")
@@ -34,7 +34,7 @@ public class OrderController {
         Page<OrderOutput> outputPage = findOrderPort.execute(customerId, pageable);
         Page<OrderResponse> responsePage = outputPage.map(OrderResponse::fromOutput);
 
-        SummaryOrdersCustomerOutput summary = findOrderCustomerSummaryPort.execute(customerId);
+        CustomerOrderSummaryOutput summary = findCustomerOrderSummaryPort.execute(customerId);
 
         Map<String, Object> summaryMap = Map.of(
                 "customerId", customerId,
@@ -46,8 +46,8 @@ public class OrderController {
     }
 
     @GetMapping("/{customerId}/orders/summary")
-    public ResponseEntity<SummaryCustomerOrderResponse> getSummaries(@PathVariable long customerId) {
-        SummaryOrdersCustomerOutput output = findOrderCustomerSummaryPort.execute(customerId);
-        return ResponseEntity.ok(SummaryCustomerOrderResponse.fromOutput(output));
+    public ResponseEntity<CustomerOrderSummaryResponse> getSummaries(@PathVariable long customerId) {
+        CustomerOrderSummaryOutput output = findCustomerOrderSummaryPort.execute(customerId);
+        return ResponseEntity.ok(CustomerOrderSummaryResponse.fromOutput(output));
     }
 }

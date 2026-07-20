@@ -29,9 +29,9 @@ public class OrderItemEntity {
 
     public static OrderItemEntity fromDomain(OrderItem orderItem) {
         return new OrderItemEntity(
-                orderItem.getProduct(),
-                orderItem.getQuantity(),
-                orderItem.getPrice(),
+                orderItem.product(),
+                orderItem.quantity(),
+                orderItem.price(),
                 orderItem.getTotal());
     }
 

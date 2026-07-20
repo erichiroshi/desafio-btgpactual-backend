@@ -1,6 +1,7 @@
 package com.erichiroshi.desafiobtgpactualbackend.application.output;
 
 import com.erichiroshi.desafiobtgpactualbackend.domain.model.Order;
+import com.erichiroshi.desafiobtgpactualbackend.domain.model.OrderItem;
 
 import java.math.BigDecimal;
 import java.util.Set;
@@ -14,11 +15,15 @@ public record OrderOutput(
 ) {
 
     public static OrderOutput fromDomain(Order order) {
-        return new OrderOutput(order.getOrderId(), order.getCustomerId(), orderItemOutputsSet(order), order.getTotal());
+        return new OrderOutput(
+                order.getOrderId(),
+                order.getCustomerId(),
+                orderItemOutputsSet(order.getItems()),
+                order.getTotal());
     }
 
-    private static Set<OrderItemOutput> orderItemOutputsSet(Order order) {
-        return order.getItems().stream()
+    private static Set<OrderItemOutput> orderItemOutputsSet(Set<OrderItem> set) {
+        return set.stream()
                 .map(OrderItemOutput::fromDomain)
                 .collect(Collectors.toSet());
     }

@@ -24,11 +24,11 @@ public class FindOrderUseCase implements FindOrderPort {
     @Override
     public Page<OrderOutput> execute(long customerId, Pageable pageable) {
 
-        logger.info("UseCase - Buscando Pedido | {}", customerId);
+        logger.info("UseCase - Finding orders | {}", customerId);
 
         Page<Order> pageOrder = orderRepositoryPort.findAllByCustomerId(customerId, pageable);
 
-        logger.info("UseCase - Pedido list | {}", pageOrder);
+        logger.info("UseCase - Order list | {}", pageOrder);
 
         return pageOrder.map(OrderOutput::fromDomain);
     }

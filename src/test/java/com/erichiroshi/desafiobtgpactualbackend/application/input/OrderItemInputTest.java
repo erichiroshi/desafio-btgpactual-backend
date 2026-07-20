@@ -15,8 +15,8 @@ class OrderItemInputTest {
 
         OrderItem orderItem = input.toDomain();
 
-        assertThat(orderItem.getProduct()).isEqualTo("lapis");
-        assertThat(orderItem.getQuantity()).isEqualTo(100);
-        assertThat(orderItem.getPrice()).isEqualByComparingTo("1.10");
+        assertThat(orderItem.product()).isEqualTo("lapis");
+        assertThat(orderItem.quantity()).isEqualTo(100);
+        assertThat(orderItem.price()).isEqualByComparingTo("1.10");
     }
 }

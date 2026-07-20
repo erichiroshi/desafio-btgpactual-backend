@@ -25,7 +25,7 @@ public class PostgresRepositoryAdapter implements OrderRepositoryPort {
     @Override
     public Order save(Order order) {
 
-        log.info("PostgresAdapter - Salvando pedido: {}", order);
+        log.info("PostgresAdapter - Saving order: {}", order);
 
         OrderEntity orderEntity = OrderEntity.fromDomain(order);
 
@@ -37,7 +37,7 @@ public class PostgresRepositoryAdapter implements OrderRepositoryPort {
     @Override
     public Page<Order> findAllByCustomerId(long customerId, Pageable pageable) {
 
-        log.info("PostgresAdapter - List<Pedido> - findAllByCustomerId customerId: {}", customerId);
+        log.info("PostgresAdapter - List<Order> - findAllByCustomerId customerId: {}", customerId);
 
         Page<OrderEntity> entityPage = repository.findAllByCustomerId(customerId, pageable);
 
@@ -55,8 +55,8 @@ public class PostgresRepositoryAdapter implements OrderRepositoryPort {
     @Override
     public BigDecimal sumTotalByCustomerId(long customerId) {
 
-        log.info("PostgresAdapter - sumValorTotalByCustomerId customerId: {}", customerId);
+        log.info("PostgresAdapter - sumTotalByCustomerId customerId: {}", customerId);
 
-        return repository.sumValorTotalByCustomerId(customerId);
+        return repository.sumTotalByCustomerId(customerId);
     }
 }

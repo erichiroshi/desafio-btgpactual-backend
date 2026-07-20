@@ -13,9 +13,9 @@ public record OrderItemOutput(
 
     public static OrderItemOutput fromDomain(OrderItem orderItem) {
         return new OrderItemOutput(
-                orderItem.getProduct(),
-                orderItem.getQuantity(),
-                orderItem.getPrice(),
+                orderItem.product(),
+                orderItem.quantity(),
+                orderItem.price(),
                 orderItem.getTotal());
     }
 }

@@ -22,11 +22,11 @@ public class SaveOrderUseCase implements SaveOrderPort {
     @Override
     public void execute(OrderInput input) {
 
-        logger.info("UseCase - Salvando Pedido | {}", input);
+        logger.info("UseCase - Saving order | {}", input);
 
         Order order = orderRepositoryPort.save(input.toDomain());
 
-        logger.info("UseCase - Pedido salvo | {}", order);
+        logger.info("UseCase - Order saved | {}", order);
 
     }
 }
